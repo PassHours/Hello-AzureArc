@@ -5,6 +5,10 @@ metadata:
   namespace: prod
 spec:
   releaseName: hello-azurearc-prod 
+  chart:
+    git: https://github.com/likamrat/hello_arc.git
+    path: charts/hello-arc
+    ref: master
   values:
     image:
       repository: atanudochub/helloazurearc
