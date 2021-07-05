@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: azurearc-deployment
   labels:
-    app: letskube
+    app: azurearc
 spec:
   replicas: 1
   template:
