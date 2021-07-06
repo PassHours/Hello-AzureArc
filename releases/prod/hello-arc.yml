@@ -1,19 +1,17 @@
-﻿apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+﻿apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   name: hello-arc
-  namespace: prod
 spec:
-  releaseName: hello-arc-prod
-  chart:
-    git: https://github.com/PassHours/Hello-AzureArc.git
-    path: charts/hello-arc
-    ref: master
-  values:
-    image:
-      repository: atanudochub/helloazurearc
-      tag: latest
-    replicaCount: 1
-    env:
-      name: MESSAGE
-      value: Azure Arc enabled K8s GitOps Demo!
+  replicas: 3 
+  template:
+    metadata:
+      labels:
+        app: hello-arc
+    spec:
+      containers:
+      - name: hello-arc
+        image: atanudochub/helloazurearc
+        tag: latest
+        ports:
+        - containerPort: 8080
