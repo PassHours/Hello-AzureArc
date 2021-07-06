@@ -1,11 +1,11 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-arc-deployment
+  name: hello-k8s-arc
   labels:
     app: hello-k8s-arc
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       name: hello-k8s-arc
@@ -15,8 +15,9 @@ spec:
       containers:
       - name: hello-k8s-arc
         image: atanudochub/helloazurearc:latest
+        ports:
+        - containerPort: 8080
         imagePullPolicy: IfNotPresent
-      restartPolicy: Always
   selector:
     matchLabels:
       app: hello-k8s-arc
