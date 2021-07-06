@@ -1,20 +1,4 @@
-﻿apiVersion: v1
-kind: Service
-metadata:
-  name: hello-k8s-arc
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    app: hello-k8s-arc
-
-
----
-
-
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-k8s-arc
@@ -36,3 +20,17 @@ spec:
         env:
         - name: MESSAGE
           value: I just deployed this on Kubernetes!
+
+---------
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-k8s-arc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: hello-k8s-arc
