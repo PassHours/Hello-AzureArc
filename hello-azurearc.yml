@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-arc
-        image: atanudochub/helloazurearc:latest
+        image: atanudochub/helloazurearc:v1
   selector:
     matchLabels:
       app: hello-arc
