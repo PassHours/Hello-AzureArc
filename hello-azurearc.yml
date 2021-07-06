@@ -1,34 +1,38 @@
-﻿apiVersion: v1
-kind: Service
-metadata:
-  name: hello-kubernetes-custom
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    app: hello-kubernetes-custom
----
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-kubernetes-custom
+  name: letskube-deployment
+  labels:
+    app: letskube
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: hello-kubernetes-custom
+  replicas: 1
   template:
     metadata:
+      name: letskube
       labels:
-        app: hello-kubernetes-custom
+        app: letskube
     spec:
       containers:
-      - name: hello-kubernetes
+      - name: letskube
         image: atanudochub/helloazurearc:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: MESSAGE
-          value: I just deployed this on Kubernetes!
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: letskube
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: letskube-service
+spec:
+  selector:
+    app: letskube
+  ports:
+    - port: 80
+  type: LoadBalancer
+  
+  
