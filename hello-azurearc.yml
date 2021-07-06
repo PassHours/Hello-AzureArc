@@ -15,8 +15,6 @@ spec:
       containers:
       - name: hello-arc
         image: atanudochub/helloazurearc:latest
-        imagePullPolicy: IfNotPresent
-      restartPolicy: Always
   selector:
     matchLabels:
       app: hello-arc
