@@ -1,36 +1,35 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: letskube-deployment
+  name: hello-arc-deployment
   labels:
-    app: letskube
+    app: hello-arc
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
-      name: letskube
+      name: hello-arc
       labels:
-        app: letskube
+        app: hello-arc
     spec:
       containers:
-      - name: letskube
+      - name: hello-arc
         image: atanudochub/helloazurearc:latest
         imagePullPolicy: IfNotPresent
       restartPolicy: Always
   selector:
     matchLabels:
-      app: letskube
-
+      app: hello-arc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: letskube-service
+  name: hello-arc-service
 spec:
   selector:
-    app: letskube
+    app: hello-arc
   ports:
     - port: 80
   type: LoadBalancer
